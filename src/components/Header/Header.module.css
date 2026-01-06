@@ -1,0 +1,357 @@
+.headerTop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: clamp(3.5rem, 8vh, 4.5rem);
+  background-color: var(--bg-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-color);
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  column-gap: clamp(0.5rem, 1.2vw, 1rem);
+  padding: 0 clamp(1rem, 3vw, 5rem);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.headerAdmin {
+  padding: 0 clamp(1rem, 3vw, 5rem);
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  cursor: pointer;
+  gap: 0;
+  justify-self: start;
+}
+
+.logo {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1;
+}
+
+.subtitle {
+  font-size: clamp(0.6rem, 2vw, 0.75rem);
+  color: var(--text-color);
+  font-weight: 500;
+  opacity: 0.8;
+  line-height: 1;
+  margin: 0;
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: center;
+  justify-content: center;
+}
+
+.navLink {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 0.875rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+  opacity: 0.85;
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--accent-primary);
+    transition: width 0.3s ease;
+}
+
+.navLink:active {
+    color: var(--accent-primary);
+    background: var(--card-hover);
+    transform: translateY(-1px);
+}
+
+.navLink:active::after {
+    width: 50%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .navLink:hover {
+      color: var(--accent-primary);
+      background: var(--card-hover);
+      transform: translateY(-2px);
+    }
+  
+    .navLink:hover::after {
+      width: 60%;
+    }
+}
+
+.navLink:active {
+    transform: translateY(0);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .navLink::after {
+    display: none;
+  }
+
+  .navLink:active {
+    background: var(--hover-bg);
+    color: var(--active-bg);
+  }
+}
+
+.actionsContainer {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  justify-self: end;
+}
+
+.actionsAlways {
+  display: flex;
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+  cursor: pointer;
+  padding: clamp(0.35rem, 1.5vw, 0.5rem);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  width: clamp(36px, 9vw, 44px);
+  height: clamp(36px, 9vw, 44px);
+}
+
+.iconButton:active {
+  background-color: var(--hover-bg);
+  transform: scale(1.1);
+  color: var(--text-color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .iconButton:hover {
+    background-color: var(--hover-bg);
+    transform: scale(1.1);
+    color: var(--text-color);
+  }
+}
+
+.ctaSecondaryButton {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: clamp(0.4rem, 1vh, 0.6rem) clamp(0.8rem, 2vw, 1.2rem);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.ctaSecondaryButton:active {
+  transform: translateY(-1px);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background: var(--card-hover);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ctaSecondaryButton:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: var(--card-hover);
+  }
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: #ffffff;
+  border: none;
+  padding: clamp(0.4rem, 1vh, 0.6rem) clamp(0.8rem, 2vw, 1.2rem);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.35);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--overlay-light), transparent);
+  transition: left 0.5s ease;
+}
+
+.ctaButton:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 18px rgba(var(--accent-rgb), 0.4);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ctaButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.45);
+  }
+
+  .ctaButton:hover::before {
+    left: 100%;
+  }
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .ctaButton::before {
+    display: none;
+  }
+
+  .ctaButton:active {
+    transform: scale(0.97);
+  }
+}
+
+.mobileMenuButton {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+  cursor: pointer;
+  padding: clamp(0.35rem, 1.5vw, 0.5rem);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  width: clamp(36px, 9vw, 44px);
+  height: clamp(36px, 9vw, 44px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+}
+
+.menuOpen {
+  background-color: var(--hover-bg);
+}
+
+.menuButtonAlways {
+  display: flex;
+}
+
+.mobileMenuButton:active {
+  background-color: var(--hover-bg);
+  transform: scale(1.05);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mobileMenuButton:hover {
+    background-color: var(--hover-bg);
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 1024px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .mobileMenuButton {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerTop {
+    padding: 0 1.5rem;
+  }
+  
+  .mobileMenuButton {
+    display: flex;
+  }
+  
+  .actionsContainer {
+    display: none;
+  }
+
+  .headerAdmin {
+    padding: 0 0.75rem;
+  }
+
+  .actionsAlways {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) { 
+  .headerTop {
+    padding: 0 0.75rem;
+  }
+  .logo {
+    font-size: 1rem;
+  }
+  .subtitle {
+    font-size: 0.6rem;
+  }
+
+  .logoContainer {
+    gap: 0.15rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .headerTop {
+    height: auto;
+    min-height: 3.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .logoContainer {
+    gap: 0.2rem;
+  }
+}
+
+@media (max-width: 240px) {
+  .headerTop {
+    padding-right: 0.5rem;
+    column-gap: 0.4rem;
+  }
+}
