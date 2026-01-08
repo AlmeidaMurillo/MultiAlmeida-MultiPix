@@ -3,6 +3,7 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import Spinner from "./components/Spinner/Spinner";
 
 const LandingPage = lazy(() => import("./screens/clients/pages/LandingPage"));
+const Register = lazy(() => import("./screens/universal/auth/Register"));
 const Login = lazy(() => import("./screens/universal/auth/Login"));
 const Dashboard = lazy(() => import("./screens/admins/pages/Dashboard"));
 const PrivacyPolicy = lazy(() => import("./screens/universal/PrivacyPolicy"));
@@ -23,7 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/criar-conta" element={<Login />} />
+            <Route path="/criar-conta" element={<Register />} />
             <Route path="/admin/login" element={<Login />} />
             <Route path="/politica-privacidade" element={<PrivacyPolicy />} />
             <Route path="/termos-uso" element={<TermsOfService />} />

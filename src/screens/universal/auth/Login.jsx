@@ -1,22 +1,18 @@
 import { useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Header from '../../../components/Header/Header';
-import Footer from '../../../components/Footer/Footer';
 import styles from './Login.module.css';
 import useSeo from '../../../utils/useSeo';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    const location = useLocation();
-    const isSignup = location.pathname === '/criar-conta';
-
     useSeo({
-        title: isSignup ? 'Criar conta | MultiAlmeida MultiPix' : 'Entrar | MultiAlmeida MultiPix',
+        title: 'Entrar | MultiAlmeida MultiPix',
         description: 'Acesse o MultiPix para configurar pagamentos interativos via PIX na sua live.',
         noindex: true,
     });
 
-
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -41,20 +37,18 @@ function Login() {
             <main className={styles.mainContent}>
                 <section className={styles.hero} aria-label="Login Administrativo">
                     <div className={styles.heroContent}>
-                        <h1 className={styles.heroTitle}>{isSignup ? 'Crie sua conta' : 'Acesse sua conta'}</h1>
+                        <h1 className={styles.heroTitle}>Acesse sua conta</h1>
                         <p className={styles.heroSubtitle}>
-                            {isSignup
-                                ? 'Crie uma conta para começar a configurar suas interações por PIX.'
-                                : 'Entre para acessar o painel e configurar sua live.'}
+                            Entre para acessar o painel e configurar sua live.
                         </p>
 
                         <div className={styles.loginForm}>
                             <form className={styles.form}>
                                 <div className={styles.inputWrapper}>
-                                    <FaUser className={styles.inputIcon} aria-hidden="true" />
+                                    <FaEnvelope className={styles.inputIcon} aria-hidden="true" />
                                     <input
-                                        id="username"
-                                        name="username"
+                                        id="email"
+                                        name="email"
                                         type="email"
                                         placeholder="E-mail"
                                         className={styles.input}
@@ -101,18 +95,24 @@ function Login() {
                                     </button>
                                 </div>
 
+                                <p className={styles.esqueceuSenhaLink}>
+                                    Esqueceu a senha? <a className={styles.link} onClick={() => navigate("/recuperar-senha")}>Recuperar senha</a>
+                                </p>
+
                                 {hasError && <p className={styles.error} role="alert">{error}</p>}
 
                                 <button type="submit" className={styles.button} disabled={!canSubmit}>
-                                    {isLoading ? (isSignup ? 'Criando...' : 'Entrando...') : (isSignup ? 'Criar conta' : 'Entrar')}
+                                    {isLoading ? 'Entrando...' : 'Entrar'}
                                 </button>
+
+                                <p className={styles.registerLink}>
+                                    Não tem uma conta? <a className={styles.link} onClick={() => navigate("/criar-conta")}>Cadastre-se</a>
+                                </p>
                             </form>
                         </div>
                     </div>
                 </section>
             </main>
-
-            <Footer />
         </div>
     );
 }
